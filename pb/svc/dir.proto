@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package pb.svc;
+option go_package = "pb/svc";
+
+import "pb/unit/dir/dir.proto";
+
+service Dir {
+    rpc CreateDir(CreateDirReq) returns (CreateDirRes);
+    rpc DeletePost(DeleteDirReq) returns (DeleteDirRes); 
+    rpc GetDir(GetDirReq) returns (GetDirRes);
+}
+
+message CreateDirReq{
+    unit.dir.Dir Dir = 1;
+}
+
+message CreateDirRes{
+    // pass
+    // unit.dir.Dir Dir = 1;
+}
+
+message DeleteDirReq{
+    // unit.dir.Dir id = 1;
+}
+
+message DeleteDirRes{
+// pass
+}
+
+message GetDirReq {
+    // unit.dir.Dir id = 1;
+}
+
+message GetDirRes {
+    unit.dir.Dir Dir = 1;
+}
+
+// message UpdatePostReq {
+//     unit.dir.Dir Dir = 1;
+// }
+
+// message UpdatePostRes {
+// // pass
+// }

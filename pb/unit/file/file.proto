@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package pb.unit.file;
+option go_package = "github.com/aglide100/go-simple-file-management/pb/unit/file";
+
+message File {
+    Spec spec = 1;
+}
+
+// message ID {
+//     string uuid = 1;
+// }
+
+message Spec {
+    string file_name = 1;
+    string size = 2;
+    string format = 3;
+}

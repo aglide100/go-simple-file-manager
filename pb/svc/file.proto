@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package pb.svc;
+option go_package = "pb/svc";
+
+import "pb/unit/file/file.proto";
+
+service File {
+    rpc CreateFile(CreateFileReq) returns (CreateFileRes);
+    rpc DeleteFile(DeleteFileReq) returns (DeleteFileRes);
+    rpc GetFile(GetFileReq) returns (GetFileRes);
+}
+
+message CreateFileReq {
+    unit.file.File id = 1;
+}
+
+message CreateFileRes {
+// pass
+}
+
+message DeleteFileReq {
+    unit.file.File id = 1;
+}
+
+message DeleteFileRes {
+// pass
+}
+
+message GetFileReq {
+    unit.file.File id = 1;
+}
+
+message GetFileRes {
+    unit.file.File Account = 1;
+}
