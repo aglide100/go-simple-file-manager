@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
@@ -24,6 +25,15 @@ func main() {
 }
 
 func realMain() error {
+	files, err := ioutil.ReadDir("./");
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, f := range files {
+		fmt.Println(f.Name())
+	}
+
 	gRPCWebAddr := flag.String("grpc.addr", "0.0.0.0:10112", "grpc address")
 	usingTls := flag.Bool("grpc.tls", true, "using http2")
 	serverCrt := flag.String("cert.crt", "keys/server.crt", "crt file location")
