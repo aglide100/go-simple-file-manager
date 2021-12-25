@@ -7,8 +7,8 @@
 package svc
 
 import (
-	dir "/pb/unit/dir"
 	context "context"
+	dir "github.com/aglide100/go-simple-file-manager/pb/unit/dir"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

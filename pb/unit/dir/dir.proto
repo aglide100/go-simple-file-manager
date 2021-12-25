@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package pb.unit.dir;
-option go_package = "/pb/unit/dir";
+option go_package = "github.com/aglide100/go-simple-file-manager/pb/unit/dir";
 
 
 message Dir {
