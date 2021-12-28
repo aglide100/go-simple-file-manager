@@ -28,7 +28,7 @@ func (s *FileServer) GetFile(ctx context.Context, in *pb_svc.GetFileReq) (*pb_sv
 
 	}}
 
-	return &pb_svc.GetFileRes{file: file}, nil
+	return &pb_svc.GetFileRes{File: file}, nil
 
 }
 

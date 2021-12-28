@@ -11,4 +11,5 @@ message Dir {
 message Spec {
     string size = 1;
     string written_date = 2;
+    repeated Dir children = 4;
 }

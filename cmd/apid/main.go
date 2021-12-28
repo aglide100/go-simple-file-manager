@@ -4,13 +4,13 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
 	"os"
 	"sync"
 
+	"github.com/aglide100/go-simple-file-manager/pkg/util/dir"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
@@ -25,14 +25,15 @@ func main() {
 }
 
 func realMain() error {
-	files, err := ioutil.ReadDir("./");
-	if err != nil {
-		log.Fatal(err)
-	}
+	// files, err := ioutil.ReadDir("./");
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	for _, f := range files {
-		fmt.Println(f.Name())
-	}
+	// for _, f := range files {
+	// 	fmt.Println(f.Name())
+	// }
+	
 
 	gRPCWebAddr := flag.String("grpc.addr", "0.0.0.0:10112", "grpc address")
 	usingTls := flag.Bool("grpc.tls", true, "using http2")
@@ -66,6 +67,15 @@ func realMain() error {
 	_ = ctx
 
 	wg.Go(func() error {
+		http.HandleFunc("/", hello)
+
+		log.Printf("Starting http server... ", )
+		err := http.ListenAndServe(":9999", nil)
+
+		return err
+	})
+
+	wg.Go(func() error {
 		wrappedServer := grpcweb.WrapServer(grpcServer, grpcweb.WithOriginFunc(func(origin string) bool {
 			// for test, TODO fix here
 			return true
@@ -94,4 +104,20 @@ func realMain() error {
 	})
 
 	return wg.Wait()
+}
+
+func hello(res http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(res,"Hello! \n");
+
+	path := req.URL.Query().Get("path")
+	if len(path) == 0 {
+		path = "./"
+	}
+
+	name, err :=  dir.GetDirectoryList(path) 
+	if err != nil {
+		fmt.Fprintf(res, "Got error :%v", err)
+	}
+	
+	fmt.Fprintf(res, "%v: \n", name)
 }

@@ -32,5 +32,5 @@ message GetFileReq {
 }
 
 message GetFileRes {
-    unit.file.File Account = 1;
+    unit.file.File File = 1;
 }
