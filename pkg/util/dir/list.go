@@ -1,7 +1,6 @@
 package dir
 
 import (
-	"fmt"
 	"io/ioutil"
 )
 
@@ -17,8 +16,8 @@ func GetDirectoryList(dir string) ([]string,error) {
 	var list []string;
 	for _, f := range files {
 		list = append(list, f.Name())
-		
-		fmt.Println(f.Name())
+
+		// fmt.Println(f.Name())
 	}
 
 	return list,nil

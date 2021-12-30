@@ -29,7 +29,7 @@ message DeleteDirRes{
 }
 
 message GetDirReq {
-    // unit.dir.Dir id = 1;
+    string path = 1;
 }
 
 message GetDirRes {
